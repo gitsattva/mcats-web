@@ -1,7 +1,6 @@
-altair
-pandas
 streamlit
 numpy
 librosa
 matplotlib
 tensorflow
+os
