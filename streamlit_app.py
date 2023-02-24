@@ -92,7 +92,6 @@ if music_file is not None:
 model = keras.models.load_model('cnn.h5')
 
 if model is not None:
-    st.write(f"The model exists!")
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
