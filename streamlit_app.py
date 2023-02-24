@@ -1,8 +1,6 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
+import librosa
 
 """
 # Welcome to Streamlit!
@@ -15,24 +13,23 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+def normalize_volume(music_file):
+    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    audio_norm = librosa.util.normalize(audio, axis=0)
+    return audio_norm, sr
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+def spectrogram(audio_norm, sr)
+    audio_stft = librosa.stft(audio_norm)
+    audio_db = librosa.amplitude_to_db(abs(audio_stft))
+    plt.figure(figsize=(14, 5))
+    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
+    #If to pring log of frequencies
+    #librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
+    plt.colorbar()
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+music_file = st.file_uploader("Choose a music file")
 
-    points_per_turn = total_points / num_turns
-
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
-
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+if music_file is not None:
+    audio_norm, sr = normalize_volume(music_file)
+    spectrogram(audio_norm, sr)
+    st.write("Here is the spectrogram!")
