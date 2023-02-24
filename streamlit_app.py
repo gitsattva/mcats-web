@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import librosa
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 """
 # Welcome to Streamlit!
 
