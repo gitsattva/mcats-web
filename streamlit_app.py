@@ -2,16 +2,12 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import librosa
 import tensorflow as tf
-# import os
+import os
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# model_url = "https://raw.githubusercontent.com/rsmassey/streamlit-example/master/saved_model.pb"
-# filename = os.path.basename(model_url)
-# urllib.request.urlretrieve(model_url, filename)
-# model = tf.saved_model.load(model_url)
-
-model = tf.saved_model.load('saved_model.pb')
+model_path = os.path.join(os.getcwd(), 'saved_model.pb')
+model = tf.saved_model.load(model_path)
 
 """
 # Welcome to Streamlit!
