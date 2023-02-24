@@ -8,12 +8,12 @@ import numpy as np
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-model_url = "https://github.com/rsmassey/streamlit-example/raw/master/saved_model.pb"
-response = requests.get(model_url)
-with open("saved_model.pb", "wb") as f:
-    f.write(response.content)
+# model_url = "https://github.com/rsmassey/streamlit-example/raw/master/saved_model.pb"
+# response = requests.get(model_url)
+# with open("saved_model.pb", "wb") as f:
+#    f.write(response.content)
 
-model = tf.saved_model.load("saved_model.pb")
+# model = tf.saved_model.load("saved_model.pb")
 
 """
 # Welcome to Streamlit!
@@ -80,6 +80,9 @@ def predict_song_cat(song_file, model):
     pred = encoder.inverse_transform(predictions_int.reshape(1,-1))
     
     return pred[0][0]
+
+model_file = st.file_uploader("Choose a model file")
+model = tf.saved_model.load(model_file)
 
 music_file = st.file_uploader("Choose a music file")
 
