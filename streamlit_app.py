@@ -111,4 +111,5 @@ if model is not None:
     max_val_index = pred.index(max_val)
     genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
     genre = genres[max_val_index]
-    st.write(f"The genre of this song is {genre}!")
+    st.write(f"The genre of this song is ...")
+    st.markdown("<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
