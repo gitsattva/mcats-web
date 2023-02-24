@@ -20,7 +20,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 """
 
 def normalize_volume(music_file):
-    audio, sr = librosa.load(music_file)#, offset=30.0, duration=30.0)
+    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm
 
@@ -87,5 +87,5 @@ if music_file is not None:
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
-    pred = normalize_volume(music_file)
+    # pred = predict_song_cat(music_file)
     # st.write(f"The genre of this song is {pred}!")
