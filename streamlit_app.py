@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 import librosa
-import tensorflow as tf
+import keras
 import os
 import requests
 import numpy as np
@@ -74,7 +74,7 @@ def predict_song_cat(song_file, model):
     
     return pred[0][0]
 
-model = tensorflow.saved_model.load('.')
+model = keras.models.load_model('cnn.h5')
 
 #model_file = st.file_uploader("Choose a model file", type="pb")
 #if model_file is not None:
