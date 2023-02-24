@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import librosa
 import tensorflow as tf
-import os
+# import os
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-base_dir = os.path.abspath(os.path.dirname(__file__))
-model_path = os.path.join(base_dir, "saved_model.pb")
+# base_dir = os.path.abspath(os.path.dirname(__file__))
+# model_path = os.path.join(base_dir, "saved_model.pb")
 
 """
 # Welcome to Streamlit!
@@ -86,6 +86,6 @@ if music_file is not None:
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
-    model = tf.saved_model.load(model_path)
+    model = tf.saved_model.load('./saved_model.pb')
     pred = predict_song_cat(song_file, model)
     st.write(f"The genre of this song is {pred}!")
