@@ -88,4 +88,4 @@ if music_file is not None:
     st.pyplot()
     st.write("Here is the spectrogram!")
     # pred = normalize_volume(music_file)
-    st.write(f"The genre of this song is {pred}!")
+    # st.write(f"The genre of this song is {pred}!")
