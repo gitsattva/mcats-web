@@ -107,7 +107,6 @@ if model is not None:
         predictions += prediction
     predictions_int = np.round(predictions).astype(int)
     pred = predictions_int.reshape(1,-1)
-    pred = pred[0]
     #max_val = max(pred)
     #max_val_index = pred.index(max_val)
     #genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
