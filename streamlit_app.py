@@ -3,8 +3,8 @@ import streamlit as st
 import librosa
 import keras
 import os
-import requests
 import numpy as np
+import pickle
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -90,8 +90,10 @@ if music_file is not None:
 #st.write(f"The genre of this song is {pred}!")
 
 model = keras.models.load_model('cnn2.h5')
+with open('encoder.pkl', 'rb') as f:
+    encoder = pickle.load(f)
 
-if model is not None:
+if encoder is not None:
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
@@ -106,10 +108,12 @@ if model is not None:
         predictions += prediction
     predictions_int = np.round(predictions).astype(int)
     pred = predictions_int.reshape(1,-1)
-    pred = pred[0].tolist()
-    max_val = max(pred)
-    max_val_index = pred.index(max_val)
-    genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
-    genre = genres[max_val_index]
+    pred = encoder.inverse_transform(predictions_int.reshape(1,-1))
+    genre = pred[0][0]
+    #pred = pred[0].tolist()
+    #max_val = max(pred)
+    #max_val_index = pred.index(max_val)
+    #genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
+    #genre = genres[max_val_index]
     st.write(f"The genre of this song is ...")
     st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
