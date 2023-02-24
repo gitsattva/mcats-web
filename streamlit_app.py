@@ -112,4 +112,4 @@ if model is not None:
     max_val_index = pred.index(max_val)
     genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
     genre = genres[max_val_index]
-    st.write(f"The genre of this song is {max_val}!")
+    st.write(f"The genre of this song is {genre}!")
