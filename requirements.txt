@@ -3,4 +3,3 @@ numpy
 librosa
 matplotlib
 tensorflow
-urllib.request
