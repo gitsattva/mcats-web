@@ -45,7 +45,7 @@ def file_to_mfcc(music_file, n_seg, i):
 
     return mfcc
 
-def predict_song_cat(song_file, model):
+def predict_song_cat(music_file, model):
     
     hop_length = 512 # num. of samples
     n_fft = 2048 # num. of samples for window
@@ -57,7 +57,7 @@ def predict_song_cat(song_file, model):
     predictions = np.zeros(8)
       
     for i in range(n_seg):
-        segment_mfcc = file_to_mfcc(song_file, n_seg, i)
+        segment_mfcc = file_to_mfcc(music_file, n_seg, i)
         target_shape = (13, 130)
         pad_width = [(0, max(0, target_shape[i] - segment_mfcc.shape[i])) for i in range(len(target_shape))]
         # Pad the array with zeros
