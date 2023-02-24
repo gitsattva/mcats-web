@@ -18,7 +18,7 @@ def normalize_volume(music_file):
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm, sr
 
-def spectrogram(audio_norm, sr)
+def spectrogram(audio_norm, sr):
     audio_stft = librosa.stft(audio_norm)
     audio_db = librosa.amplitude_to_db(abs(audio_stft))
     plt.figure(figsize=(14, 5))
