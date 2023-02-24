@@ -76,11 +76,6 @@ def predict_song_cat(music_file, model):
 
 model = keras.models.load_model('cnn.h5')
 
-#model_file = st.file_uploader("Choose a model file", type="pb")
-#if model_file is not None:
-#    model_path = os.path.join(os.getcwd(), model_file.name)
-#    model = tf.saved_model.load(model_path)
-
 music_file = st.file_uploader("Choose a music file")
 
 if music_file is not None:
@@ -92,5 +87,5 @@ if music_file is not None:
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
-    pred = predict_song_cat(music_file, model)
+    pred = normalize_volume(music_file)
     st.write(f"The genre of this song is {pred}!")
