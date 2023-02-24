@@ -84,11 +84,11 @@ model = keras.models.load_model('cnn.h5')
 music_file = st.file_uploader("Choose a music file")
 
 if music_file is not None:
-    audio_norm, sr = normalize_volume(music_file)
+    audio_norm = normalize_volume(music_file)
     audio_stft = librosa.stft(audio_norm)
     audio_db = librosa.amplitude_to_db(abs(audio_stft))
     plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
+    librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
