@@ -32,4 +32,5 @@ music_file = st.file_uploader("Choose a music file")
 if music_file is not None:
     audio_norm, sr = normalize_volume(music_file)
     spectrogram(audio_norm, sr)
+    plt.show()
     st.write("Here is the spectrogram!")
