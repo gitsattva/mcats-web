@@ -3,10 +3,15 @@ import streamlit as st
 import librosa
 import tensorflow as tf
 import os
+import requests
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-model_path = os.path.join(os.getcwd(), 'saved_model.pb')
+model_url = "https://github.com/rsmassey/streamlit-example/edit/master/saved_model.pb"
+response = requests.get(model_url)
+with open(model_path, "wb") as f:
+    f.write(response.content)
+
 model = tf.saved_model.load(model_path)
 
 """
