@@ -7,6 +7,8 @@ import tensorflow as tf
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 model_url = "https://raw.githubusercontent.com/rsmassey/streamlit-example/master/saved_model.pb"
+filename = os.path.basename(model_url)
+urllib.request.urlretrieve(model_url, filename)
 model = tf.saved_model.load(model_url)
 
 """
