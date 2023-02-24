@@ -20,7 +20,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 """
 
 def normalize_volume(music_file):
-    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    audio, sr = librosa.load(music_file)#, offset=30.0, duration=30.0)
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm
 
