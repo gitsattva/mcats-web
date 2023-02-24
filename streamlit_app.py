@@ -9,10 +9,10 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 model_url = "https://github.com/rsmassey/streamlit-example/edit/master/saved_model.pb"
 response = requests.get(model_url)
-with open(model_path, "wb") as f:
+with open(model_url, "wb") as f:
     f.write(response.content)
 
-model = tf.saved_model.load(model_path)
+model = tf.saved_model.load(model_url)
 
 """
 # Welcome to Streamlit!
