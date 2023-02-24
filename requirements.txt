@@ -3,5 +3,4 @@ pandas
 streamlit
 numpy
 librosa
-librosa.display
 matplotlib
