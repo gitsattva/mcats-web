@@ -8,13 +8,6 @@ import numpy as np
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# model_url = "https://github.com/rsmassey/streamlit-example/raw/master/saved_model.pb"
-# response = requests.get(model_url)
-# with open("saved_model.pb", "wb") as f:
-#    f.write(response.content)
-
-# model = tf.saved_model.load("saved_model.pb")
-
 """
 # Welcome to Streamlit!
 
@@ -83,7 +76,7 @@ def predict_song_cat(song_file, model):
 
 model_file = st.file_uploader("Choose a model file", type="pb")
 if model_file is not None:
-    model = tf.saved_model.load(str(model_file.read()))
+    model = tf.saved_model.load(model_file)
 
     music_file = st.file_uploader("Choose a music file")
 
@@ -96,5 +89,5 @@ if model_file is not None:
         plt.colorbar()
         st.pyplot()
         st.write("Here is the spectrogram!")
-        pred = predict_song_cat(song_file, model)
+        pred = predict_song_cat(music_file, model)
         st.write(f"The genre of this song is {pred}!")
