@@ -3,4 +3,3 @@ numpy
 librosa
 matplotlib
 keras
-pickle
