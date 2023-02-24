@@ -81,19 +81,21 @@ def predict_song_cat(song_file, model):
     
     return pred[0][0]
 
-model_file = st.file_uploader("Choose a model file")
-model = tf.saved_model.load(model_file)
+model_file = st.file_uploader("Choose a model file", type="pb")
+if model_file is not None:
+    response = model_file.read()
+    model = tf.saved_model.load_from_buffer(response)
 
-music_file = st.file_uploader("Choose a music file")
+    music_file = st.file_uploader("Choose a music file")
 
-if music_file is not None:
-    audio_norm, sr = normalize_volume(music_file)
-    audio_stft = librosa.stft(audio_norm)
-    audio_db = librosa.amplitude_to_db(abs(audio_stft))
-    plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
-    plt.colorbar()
-    st.pyplot()
-    st.write("Here is the spectrogram!")
-    pred = predict_song_cat(song_file, model)
-    st.write(f"The genre of this song is {pred}!")
+    if music_file is not None:
+        audio_norm, sr = normalize_volume(music_file)
+        audio_stft = librosa.stft(audio_norm)
+        audio_db = librosa.amplitude_to_db(abs(audio_stft))
+        plt.figure(figsize=(14, 5))
+        librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
+        plt.colorbar()
+        st.pyplot()
+        st.write("Here is the spectrogram!")
+        pred = predict_song_cat(song_file, model)
+        st.write(f"The genre of this song is {pred}!")
