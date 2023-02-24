@@ -18,19 +18,13 @@ def normalize_volume(music_file):
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm, sr
 
-def spectrogram(audio_norm, sr):
-    audio_stft = librosa.stft(audio_norm)
-    audio_db = librosa.amplitude_to_db(abs(audio_stft))
-    plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
-    #If to pring log of frequencies
-    #librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
-    plt.colorbar()
-
 music_file = st.file_uploader("Choose a music file")
 
 if music_file is not None:
     audio_norm, sr = normalize_volume(music_file)
-    spectrogram(audio_norm, sr)
-    plt.show()
+    audio_stft = librosa.stft(audio_norm)
+    audio_db = librosa.amplitude_to_db(abs(audio_stft))
+    plt.figure(figsize=(14, 5))
+    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
+    plt.colorbar()
     st.write("Here is the spectrogram!")
