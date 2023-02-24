@@ -74,7 +74,7 @@ def predict_song_cat(song_file, model):
     
     return pred[0][0]
 
-model = tensorflow.saved_model.load(os.getcwd())
+model = tensorflow.saved_model.load('.')
 
 #model_file = st.file_uploader("Choose a model file", type="pb")
 #if model_file is not None:
