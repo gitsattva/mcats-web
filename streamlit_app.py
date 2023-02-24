@@ -92,5 +92,5 @@ if music_file is not None:
 model = keras.models.load_model('cnn.h5')
 
 if model is not None:
-    audio_norm = normalize_volume(music_file)
+    st.write(f"The model exists!")
     
