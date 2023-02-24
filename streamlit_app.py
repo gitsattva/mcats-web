@@ -89,7 +89,7 @@ if music_file is not None:
 #pred = str(predict_song_cat(music_file, model))
 #st.write(f"The genre of this song is {pred}!")
 
-model = keras.models.load_model('cnn.h5')
+model = keras.models.load_model('cnn2.h5')
 
 if model is not None:
     segment_mfccs = []
