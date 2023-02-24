@@ -94,7 +94,17 @@ model = keras.models.load_model('cnn.h5')
 if model is not None:
     st.write(f"The model exists!")
     segment_mfccs = []
+    predictions = np.zeros(8)
+    target_shape = (13, 130)
     for i in range(10):
         segment_mfcc = file_to_mfcc(audio_norm, 10, i)
-        segment_mfccs.append(segment_mfcc)
-        
+        pad_width = [(0, max(0, target_shape[i] - segment_mfcc.shape[i])) for i in range(len(target_shape))]
+        padded_mfcc = np.pad(segment_mfcc, pad_width=pad_width, mode='constant', constant_values=0)
+        padded_mfcc = np.array(padded_mfcc)
+        padded_mfcc = padded_mfcc[np.newaxis,...,np.newaxis]
+        segment_mfccs.append(padded_mfcc)
+        prediction = np.ravel(model.predict(padded_mfcc))
+        predictions += prediction
+    predictions_int = np.round(predictions).astype(int)
+    pred = predictions_int.reshape(1,-1)
+    st.write(f"The genre of this song is {pred}!")
