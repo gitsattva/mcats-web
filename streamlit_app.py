@@ -4,15 +4,16 @@ import librosa
 import tensorflow as tf
 import os
 import requests
+import numpy as np
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-model_url = "https://raw.githubusercontent.com/rsmassey/streamlit-example/master/saved_model.pb"
+model_url = "https://github.com/rsmassey/streamlit-example/raw/master/saved_model.pb"
 response = requests.get(model_url)
-with open(model_url, "wb") as f:
+with open("saved_model.pb", "wb") as f:
     f.write(response.content)
 
-model = tf.saved_model.load(model_url)
+model = tf.saved_model.load("saved_model.pb")
 
 """
 # Welcome to Streamlit!
