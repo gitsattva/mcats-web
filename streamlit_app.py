@@ -93,4 +93,8 @@ model = keras.models.load_model('cnn.h5')
 
 if model is not None:
     st.write(f"The model exists!")
-    
+    segment_mfccs = []
+    for i in range(10):
+        segment_mfcc = file_to_mfcc(music_file, 10, i)
+        segment_mfccs.append(segment_mfcc)
+        
