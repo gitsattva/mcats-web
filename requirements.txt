@@ -3,4 +3,4 @@ pandas
 streamlit
 numpy
 librosa
-matplotlib.pyplot
+matplotlib
