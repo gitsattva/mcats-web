@@ -7,7 +7,7 @@ import requests
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-model_url = "https://github.com/rsmassey/streamlit-example/edit/master/saved_model.pb"
+model_url = "https://raw.githubusercontent.com/rsmassey/streamlit-example/master/saved_model.pb"
 response = requests.get(model_url)
 with open(model_url, "wb") as f:
     f.write(response.content)
