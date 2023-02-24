@@ -25,6 +25,6 @@ if music_file is not None:
     audio_stft = librosa.stft(audio_norm)
     audio_db = librosa.amplitude_to_db(abs(audio_stft))
     plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
-    plt.colorbar()
+    fig, ax = librosa.display.specshow(audio_db, sr=sr, x_axis='time', y_axis='hz')
+    st.colorbar()
     st.write("Here is the spectrogram!")
