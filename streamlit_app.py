@@ -88,5 +88,5 @@ if music_file is not None:
     st.pyplot()
     st.write("Here is the spectrogram!")
     
-pred = predict_song_cat(music_file, model)
+pred = str(predict_song_cat(music_file, model))
 st.write(f"The genre of this song is {pred}!")
