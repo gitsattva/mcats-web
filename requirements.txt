@@ -3,4 +3,4 @@ numpy
 librosa
 matplotlib
 keras
-requests
+pickle
