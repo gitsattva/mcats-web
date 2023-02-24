@@ -83,7 +83,7 @@ def predict_song_cat(song_file, model):
 
 model_file = st.file_uploader("Choose a model file", type="pb")
 if model_file is not None:
-    model = tf.keras.models.load_model(model_file)
+    model = tf.saved_model.load(str(model_file.read()))
 
     music_file = st.file_uploader("Choose a music file")
 
