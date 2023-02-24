@@ -3,3 +3,4 @@ numpy
 librosa
 matplotlib
 tensorflow
+requests
