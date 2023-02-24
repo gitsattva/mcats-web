@@ -76,7 +76,8 @@ def predict_song_cat(song_file, model):
 
 model_file = st.file_uploader("Choose a model file", type="pb")
 if model_file is not None:
-    model = tf.saved_model.load(model_file)
+    model_path = model_file.name
+    model = tf.saved_model.load(model_path)
 
     music_file = st.file_uploader("Choose a music file")
 
