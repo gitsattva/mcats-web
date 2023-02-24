@@ -24,7 +24,7 @@ def normalize_volume(music_file):
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm
 
-def file_to_mfcc(music_file, n_seg, i):
+def file_to_mfcc(audio_norm, n_seg, i):
     
     hop_length = 512 # num. of samples
     n_fft = 2048 # num. of samples for window
@@ -38,7 +38,7 @@ def file_to_mfcc(music_file, n_seg, i):
     end = start + samples_per_segment
 
     # Load file into time series and sample rate
-    audio_norm = normalize_volume(music_file)
+    # audio_norm = normalize_volume(music_file)
 
     # Convert the STFT into decibal (absolute value because negative values give an error for logarithms)
     mfcc = librosa.feature.mfcc(y=audio_norm[start:end], sr=sr, n_fft=n_fft, hop_length=hop_length, n_mfcc=n_mfcc)
@@ -95,6 +95,6 @@ if model is not None:
     st.write(f"The model exists!")
     segment_mfccs = []
     for i in range(10):
-        segment_mfcc = file_to_mfcc(music_file, 10, i)
+        segment_mfcc = file_to_mfcc(audio_norm, 10, i)
         segment_mfccs.append(segment_mfcc)
         
