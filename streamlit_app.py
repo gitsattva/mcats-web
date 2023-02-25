@@ -91,7 +91,7 @@ model = keras.models.load_model('cnn2.h5')
 with open('encoder.pkl', 'rb') as f:
     encoder = pickle.load(f)
 
-if encoder is not None:
+try:
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
@@ -120,3 +120,6 @@ if encoder is not None:
         f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
         unsafe_allow_html=True,
     )
+    
+except NameError:
+    None
