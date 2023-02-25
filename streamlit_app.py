@@ -91,7 +91,6 @@ with open('encoder.pkl', 'rb') as f:
     encoder = pickle.load(f)
 
 if encoder is not None:
-#    genre = predict_song_cat(music_file, model)
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
