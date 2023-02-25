@@ -86,34 +86,28 @@ if music_file is not None:
     st.pyplot()
     st.write("Here is the spectrogram!")
     
-#pred = str(predict_song_cat(music_file, model))
-#st.write(f"The genre of this song is {pred}!")
-
 model = keras.models.load_model('cnn2.h5')
 with open('encoder.pkl', 'rb') as f:
     encoder = pickle.load(f)
 
 if encoder is not None:
-    segment_mfccs = []
-    predictions = np.zeros(8)
-    target_shape = (13, 130)
-    for i in range(10):
-        segment_mfcc = file_to_mfcc(audio_norm, 10, i)
-        pad_width = [(0, max(0, target_shape[i] - segment_mfcc.shape[i])) for i in range(len(target_shape))]
-        padded_mfcc = np.pad(segment_mfcc, pad_width=pad_width, mode='constant', constant_values=0)
-        padded_mfcc = np.array(padded_mfcc)
-        padded_mfcc = padded_mfcc[np.newaxis,...,np.newaxis]
-        segment_mfccs.append(padded_mfcc)
-        prediction = np.ravel(model.predict(padded_mfcc))
-        predictions += prediction
-    predictions_int = np.round(predictions).astype(int)
-    pred = predictions_int.reshape(1,-1)
-    pred = encoder.inverse_transform(predictions_int.reshape(1,-1))
-    genre = pred[0][0]
-    #pred = pred[0].tolist()
-    #max_val = max(pred)
-    #max_val_index = pred.index(max_val)
-    #genres = ['country', 'classical', 'metal', 'hiphop', 'electronic', 'pop', 'reggae', 'rock']
-    #genre = genres[max_val_index]
+    genre = predict_song_cat(music_file, model)
+#    segment_mfccs = []
+#    predictions = np.zeros(8)
+#    target_shape = (13, 130)
+#    for i in range(10):
+#        segment_mfcc = file_to_mfcc(audio_norm, 10, i)
+#        pad_width = [(0, max(0, target_shape[i] - segment_mfcc.shape[i])) for i in range(len(target_shape))]
+#        padded_mfcc = np.pad(segment_mfcc, pad_width=pad_width, mode='constant', constant_values=0)
+#        padded_mfcc = np.array(padded_mfcc)
+#        padded_mfcc = padded_mfcc[np.newaxis,...,np.newaxis]
+#        segment_mfccs.append(padded_mfcc)
+#        prediction = np.ravel(model.predict(padded_mfcc))
+#        predictions += prediction
+#    predictions_int = np.round(predictions).astype(int)
+#    pred = predictions_int.reshape(1,-1)
+#    pred = encoder.inverse_transform(predictions_int.reshape(1,-1))
+#    genre = pred[0][0]
+
     st.write(f"The genre of this song is ...")
     st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
