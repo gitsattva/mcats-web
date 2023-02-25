@@ -38,7 +38,7 @@ def file_to_mfcc(audio_norm, n_seg, i):
     end = start + samples_per_segment
 
     # Load file into time series and sample rate
-    audio_norm = normalize_volume(music_file)
+    # audio_norm = normalize_volume(music_file)
 
     # Convert the STFT into decibal (absolute value because negative values give an error for logarithms)
     mfcc = librosa.feature.mfcc(y=audio_norm[start:end], sr=sr, n_fft=n_fft, hop_length=hop_length, n_mfcc=n_mfcc)
