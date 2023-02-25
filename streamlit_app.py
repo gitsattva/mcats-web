@@ -110,7 +110,7 @@ if encoder is not None:
     genre = pred[0][0]
 
     st.write(f"The genre of this song is ...")
-    st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
+    # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
     
     if genre == 'metal':
         file_ = open('metal.gif', 'rb')
