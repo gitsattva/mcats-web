@@ -9,7 +9,9 @@ import base64
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.markdown('LeWagon Music Genre Classification Project')
+st.title('LeWagon Music Genre Classification Project')
+
+st.header('Brought to you by: Alexander Bun, Ryan Massey, Sarah Deutchman, Steven Tin')
 
 def normalize_volume(music_file):
     audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
