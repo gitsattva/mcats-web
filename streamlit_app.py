@@ -13,6 +13,18 @@ st.title('LeWagon Music Genre Classification Project')
 
 st.header('Brought to you by: Alexander Bun, Ryan Massey, Sarah Deutchman, Steven Tin')
 
+def set_background(png_file):
+    bin_str = get_base64(png_file)
+    page_bg_img = '''
+    <style>
+    .stApp {
+    background-image: url("data:image/png;base64,%s");
+    background-size: cover;
+    }
+    </style>
+    ''' % bin_str
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    
 def normalize_volume(music_file):
     audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
     audio_norm = librosa.util.normalize(audio, axis=0)
