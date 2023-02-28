@@ -9,16 +9,7 @@ import base64
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-"""
-# Welcome to Streamlit!
-
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+st.markdown('LeWagon Music Genre Classification Project')
 
 def normalize_volume(music_file):
     audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
