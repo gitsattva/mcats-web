@@ -6,6 +6,7 @@ import os
 import numpy as np
 import pickle
 import base64
+import IPython.display as ipd
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -91,6 +92,9 @@ if music_file is not None:
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
+
+audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+ipd.Audio(audio, rate=sr)
     
 model = keras.models.load_model('cnn2.h5')
 with open('encoder.pkl', 'rb') as f:
