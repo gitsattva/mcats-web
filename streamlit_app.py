@@ -83,6 +83,9 @@ def predict_song_cat(music_file, model):
 
 music_file = st.file_uploader("Choose a music file")
 
+audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+ipd.Audio(audio, rate=sr)
+
 if music_file is not None:
     audio_norm = normalize_volume(music_file)
     audio_stft = librosa.stft(audio_norm)
@@ -92,9 +95,6 @@ if music_file is not None:
     plt.colorbar()
     st.pyplot()
     st.write("Here is the spectrogram!")
-
-audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
-ipd.Audio(audio, rate=sr)
     
 model = keras.models.load_model('cnn2.h5')
 with open('encoder.pkl', 'rb') as f:
