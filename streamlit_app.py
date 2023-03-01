@@ -97,9 +97,6 @@ if music_file is not None:
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
-        
-    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
-    st.audio(audio, sample_rate=sr)
 
 try:
     segment_mfccs = []
@@ -130,6 +127,9 @@ try:
         f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
         unsafe_allow_html=True,
     )
+    
+    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    st.audio(audio, sample_rate=sr)
     
 except NameError:
     file_ = open('machine.gif', 'rb')
