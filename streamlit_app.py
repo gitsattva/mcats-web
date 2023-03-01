@@ -84,9 +84,6 @@ def predict_song_cat(music_file, model):
 music_file = st.file_uploader("Choose a music file")
 
 if music_file is not None:
-    
-    # audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
-    # st.audio(audio, sample_rate=sr)
 
     audio_norm = normalize_volume(music_file)
     audio_stft = librosa.stft(audio_norm)
@@ -97,9 +94,12 @@ if music_file is not None:
     st.pyplot()
     st.write("Here is the spectrogram!")
     
-model = keras.models.load_model('cnn2.h5')
-with open('encoder.pkl', 'rb') as f:
-    encoder = pickle.load(f)
+    model = keras.models.load_model('cnn2.h5')
+    with open('encoder.pkl', 'rb') as f:
+        encoder = pickle.load(f)
+        
+audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+st.audio(audio, sample_rate=sr)
 
 try:
     segment_mfccs = []
