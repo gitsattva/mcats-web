@@ -28,6 +28,7 @@ def set_background(png_file):
     
 def normalize_volume(music_file):
     audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    st.audio(audio, sample_rate=sr)
     audio_norm = librosa.util.normalize(audio, axis=0)
     return audio_norm
 
@@ -128,8 +129,8 @@ try:
         unsafe_allow_html=True,
     )
     
-    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
-    st.audio(audio, sample_rate=sr)
+    #audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    #st.audio(audio, sample_rate=sr)
     
 except NameError:
     file_ = open('machine.gif', 'rb')
