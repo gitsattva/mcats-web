@@ -85,8 +85,8 @@ music_file = st.file_uploader("Choose a music file")
 
 if music_file is not None:
     
-    audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
-    st.audio(audio, sample_rate=sr)
+    # audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
+    # st.audio(audio, sample_rate=sr)
 
     audio_norm = normalize_volume(music_file)
     audio_stft = librosa.stft(audio_norm)
