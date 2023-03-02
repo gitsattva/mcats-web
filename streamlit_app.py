@@ -102,6 +102,10 @@ def run_prediction(audio_norm, model):
     )
 
 music_file = st.file_uploader("Choose a music file")
+if st.button(“:musical_note: Predict Genre”):
+    #my_bar = st.progress(0)
+    with st.spinner(‘Calculating....’):
+        time.sleep(2)
 if music_file:
     file_ = open('machine.gif', 'rb')
     contents = file_.read()
