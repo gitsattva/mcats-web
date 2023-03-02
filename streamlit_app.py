@@ -99,7 +99,7 @@ def run_prediction(audio_norm, model):
     data_url = base64.b64encode(contents).decode('utf-8')
     file_.close()
     st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" width="500">',
+        f'<img src="data:image/gif;base64,{data_url}" width="750">',
         unsafe_allow_html=True, 
     )
 
