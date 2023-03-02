@@ -44,6 +44,13 @@ def file_to_mfcc(audio_norm, n_seg, i):
 
     return mfcc
 
+def extract_features(audio_norm):
+
+    # Tempo and beats
+    tempo, beats = librosa.beat.beat_track(y=audio_norm)
+    beats_mean = beats.mean()
+    return tempo, beats_mean
+
 def predict_song_cat(music_file, model):
     
     hop_length = 512 # num. of samples
@@ -137,9 +144,10 @@ with col1:
         librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
         plt.colorbar()
         st.pyplot()
-        st.write("Here is the spectrogram!")
 
 with col2:
+    tempo, beats = extract_features(audio_norm, sr)
+    st.markdown(f'The tempo of the song is: {tempo}, and the beats are {beats}')
     
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
