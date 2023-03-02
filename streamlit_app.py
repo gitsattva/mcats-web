@@ -127,7 +127,7 @@ if music_file is not None:
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
         
-    result = run_prediction(music_file)
+    result = run_prediction(audio_norm, model)
     loading_gif.empty()
     display_output(result)
     
