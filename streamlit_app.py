@@ -100,7 +100,7 @@ if music_file is not None:
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
 
-def run_prediction():
+def run_prediction(audio_norm):
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
