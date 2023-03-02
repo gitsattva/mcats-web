@@ -81,9 +81,6 @@ if music_file:
         f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
         unsafe_allow_html=True,
     )
-    result = run_prediction(music_file)
-    loading_gif.empty()
-    display_output(result)
 
 if music_file is not None:
 
@@ -99,8 +96,12 @@ if music_file is not None:
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
+        
+    result = run_prediction(music_file)
+    loading_gif.empty()
+    display_output(result)
 
-def run_prediction(audio_norm):
+def run_prediction(audio_norm, model):
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
