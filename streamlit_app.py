@@ -103,7 +103,6 @@ def run_prediction(audio_norm, model):
 
 music_file = st.file_uploader("Choose a music file")
 with st.spinner('Calculating....'):
-    time.sleep(2)
 if music_file:
     file_ = open('machine.gif', 'rb')
     contents = file_.read()
