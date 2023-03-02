@@ -8,6 +8,8 @@ import pickle
 import base64
 import IPython.display as ipd
 
+st.set_page_config(layout="wide")
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('LeWagon Music Genre Classification Project')
@@ -101,7 +103,7 @@ def run_prediction(audio_norm, model):
         unsafe_allow_html=True,
     )
 
-col1, col2 = st.columns([2, 1])
+col1, col2 = st.columns([1, 1])
     
 with col1:
     
