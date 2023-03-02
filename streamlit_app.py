@@ -100,7 +100,7 @@ def run_prediction(audio_norm, model):
     file_.close()
     st.markdown(
         f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-        unsafe_allow_html=True, use_column_width=True
+        unsafe_allow_html=True, output_width=750, output_height=350
     )
 
 col1, col2 = st.columns([1, 1])
