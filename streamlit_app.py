@@ -72,6 +72,18 @@ def predict_song_cat(music_file, model):
     return pred[0][0]
 
 music_file = st.file_uploader("Choose a music file")
+if music_file:
+    file_ = open('machine.gif', 'rb')
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode('utf-8')
+    file_.close()
+    loading_gif = st.markdown(
+        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+        unsafe_allow_html=True,
+    )
+    result = run_prediction(music_file)
+    loading_gif.empty()
+    display_output(result)
 
 if music_file is not None:
 
@@ -88,7 +100,7 @@ if music_file is not None:
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
 
-try:
+def run_prediction():
     segment_mfccs = []
     predictions = np.zeros(8)
     target_shape = (13, 130)
@@ -122,11 +134,11 @@ try:
     #st.audio(audio, sample_rate=sr)
     
 except NameError:
-    file_ = open('machine.gif', 'rb')
-    contents = file_.read()
-    data_url = base64.b64encode(contents).decode('utf-8')
-    file_.close()
-    st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-        unsafe_allow_html=True,
-    )
+#    file_ = open('machine.gif', 'rb')
+#    contents = file_.read()
+#    data_url = base64.b64encode(contents).decode('utf-8')
+#    file_.close()
+#    st.markdown(
+#        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+#        unsafe_allow_html=True,
+#    )
