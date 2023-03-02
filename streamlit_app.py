@@ -133,8 +133,7 @@ def run_prediction():
     #audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
     #st.audio(audio, sample_rate=sr)
     
-except NameError:
-    None
+# except NameError:
 #    file_ = open('machine.gif', 'rb')
 #    contents = file_.read()
 #    data_url = base64.b64encode(contents).decode('utf-8')
