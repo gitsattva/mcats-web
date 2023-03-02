@@ -101,28 +101,34 @@ def run_prediction(audio_norm, model):
         unsafe_allow_html=True,
     )
 
-music_file = st.file_uploader("Choose a music file")
-with st.spinner('Calculating....'):
-    if music_file:
-        file_ = open('machine.gif', 'rb')
-        contents = file_.read()
-        data_url = base64.b64encode(contents).decode('utf-8')
-        file_.close()
-        loading_gif = st.markdown(
-            f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-            unsafe_allow_html=True,
-        )
+col1, col2 = st.columns([1, 1])
+    
+with col1:
+    
+    music_file = st.file_uploader("Choose a music file")
+    with st.spinner('Calculating....'):
+        if music_file:
+            file_ = open('machine.gif', 'rb')
+            contents = file_.read()
+            data_url = base64.b64encode(contents).decode('utf-8')
+            file_.close()
+            loading_gif = st.markdown(
+                f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+                unsafe_allow_html=True,
+            )
 
-if music_file is not None:
-    loading_gif.empty()
-    audio_norm = normalize_volume(music_file)
-    audio_stft = librosa.stft(audio_norm)
-    audio_db = librosa.amplitude_to_db(abs(audio_stft))
-    plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
-    plt.colorbar()
-    st.pyplot()
-    st.write("Here is the spectrogram!")
+    if music_file is not None:
+        loading_gif.empty()
+        audio_norm = normalize_volume(music_file)
+        audio_stft = librosa.stft(audio_norm)
+        audio_db = librosa.amplitude_to_db(abs(audio_stft))
+        plt.figure(figsize=(14, 5))
+        librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
+        plt.colorbar()
+        st.pyplot()
+        st.write("Here is the spectrogram!")
+
+with col2:
     
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
