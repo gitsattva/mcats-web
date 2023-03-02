@@ -145,8 +145,8 @@ with col1:
         st.pyplot()
 
 with col2:
-    tempo, beats = extract_features(audio_norm, sr)
-    st.markdown(f'The tempo of the song is: {tempo}, and the beats are {beats}')
+    #tempo, beats = extract_features(audio_norm, sr)
+    #st.markdown(f'The tempo of the song is: {tempo}, and the beats are {beats}')
     
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
