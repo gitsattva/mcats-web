@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.title('LeWagon Music Genre Classification Project')
+st.title('MCATs: Music Category Analyzing Tools')
 
 st.header('Brought to you by:')
 st.markdown('Alexander Bun, Ryan Massey, Sarah Deutchman, Steven Tin')
