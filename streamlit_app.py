@@ -94,7 +94,7 @@ def run_prediction(audio_norm, model):
     st.write(f"The genre of this song is ...")
     # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
     
-    file_ = open(f'{genre}.gif', 'rb')
+    file_ = open(f'{genre}_2.gif', 'rb')
     contents = file_.read()
     data_url = base64.b64encode(contents).decode('utf-8')
     file_.close()
