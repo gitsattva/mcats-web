@@ -103,15 +103,15 @@ def run_prediction(audio_norm, model):
 
 music_file = st.file_uploader("Choose a music file")
 with st.spinner('Calculating....'):
-if music_file:
-    file_ = open('machine.gif', 'rb')
-    contents = file_.read()
-    data_url = base64.b64encode(contents).decode('utf-8')
-    file_.close()
-    loading_gif = st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-        unsafe_allow_html=True,
-    )
+    if music_file:
+        file_ = open('machine.gif', 'rb')
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode('utf-8')
+        file_.close()
+        loading_gif = st.markdown(
+            f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+            unsafe_allow_html=True,
+        )
 
 if music_file is not None:
     loading_gif.empty()
