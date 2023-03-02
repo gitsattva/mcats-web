@@ -71,36 +71,6 @@ def predict_song_cat(music_file, model):
     
     return pred[0][0]
 
-music_file = st.file_uploader("Choose a music file")
-if music_file:
-    file_ = open('machine.gif', 'rb')
-    contents = file_.read()
-    data_url = base64.b64encode(contents).decode('utf-8')
-    file_.close()
-    loading_gif = st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-        unsafe_allow_html=True,
-    )
-
-if music_file is not None:
-
-    audio_norm = normalize_volume(music_file)
-    audio_stft = librosa.stft(audio_norm)
-    audio_db = librosa.amplitude_to_db(abs(audio_stft))
-    plt.figure(figsize=(14, 5))
-    librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
-    plt.colorbar()
-    st.pyplot()
-    st.write("Here is the spectrogram!")
-    
-    model = keras.models.load_model('cnn2.h5')
-    with open('encoder.pkl', 'rb') as f:
-        encoder = pickle.load(f)
-        
-    result = run_prediction(music_file)
-    loading_gif.empty()
-    display_output(result)
-
 def run_prediction(audio_norm, model):
     segment_mfccs = []
     predictions = np.zeros(8)
@@ -130,6 +100,36 @@ def run_prediction(audio_norm, model):
         f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
         unsafe_allow_html=True,
     )
+
+music_file = st.file_uploader("Choose a music file")
+if music_file:
+    file_ = open('machine.gif', 'rb')
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode('utf-8')
+    file_.close()
+    loading_gif = st.markdown(
+        f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+        unsafe_allow_html=True,
+    )
+
+if music_file is not None:
+
+    audio_norm = normalize_volume(music_file)
+    audio_stft = librosa.stft(audio_norm)
+    audio_db = librosa.amplitude_to_db(abs(audio_stft))
+    plt.figure(figsize=(14, 5))
+    librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
+    plt.colorbar()
+    st.pyplot()
+    st.write("Here is the spectrogram!")
+    
+    model = keras.models.load_model('cnn2.h5')
+    with open('encoder.pkl', 'rb') as f:
+        encoder = pickle.load(f)
+        
+    result = run_prediction(music_file)
+    loading_gif.empty()
+    display_output(result)
     
     #audio, sr = librosa.load(music_file, offset=30.0, duration=30.0)
     #st.audio(audio, sample_rate=sr)
