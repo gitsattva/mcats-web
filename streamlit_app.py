@@ -95,11 +95,10 @@ def run_prediction(audio_norm, model):
     tempo, beats = librosa.beat.beat_track(y=audio_norm)
     beats_mean = beats.mean()
     
-    st.markdown(f"<h2 style='text-align: center; color: red;'> The tempo is {tempo:.1f} beats per minute.</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: left; color: red;'> The tempo is {tempo:.1f} beats per minute.</h2>", unsafe_allow_html=True)
     # st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats_mean}</h1>", unsafe_allow_html=True)
 
-    st.write(f"The genre of this song is ...")
-    # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: red;'>The genre of this song is ...</h1>", unsafe_allow_html=True)
     
     file_ = open(f'{genre}_2.gif', 'rb')
     contents = file_.read()
