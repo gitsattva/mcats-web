@@ -114,17 +114,7 @@ col1, col2 = st.columns([1, 1])
     
 with col1:
     music_file = st.file_uploader("Choose a music file")
-    with st.spinner('Calculating....'):
-        if music_file:
-            file_ = open('machine.gif', 'rb')
-            contents = file_.read()
-            data_url = base64.b64encode(contents).decode('utf-8')
-            file_.close()
-            loading_gif = st.markdown(
-                    f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
-                    unsafe_allow_html=True,
-                )
-
+    
     file_ = open('record.gif', 'rb')
     contents = file_.read()
     data_url = base64.b64encode(contents).decode('utf-8')
