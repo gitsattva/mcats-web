@@ -125,7 +125,6 @@ with col1:
     )
 
     if music_file is not None:
-        loading_gif.empty()
         audio_norm = normalize_volume(music_file)
         audio_stft = librosa.stft(audio_norm)
         audio_db = librosa.amplitude_to_db(abs(audio_stft))
