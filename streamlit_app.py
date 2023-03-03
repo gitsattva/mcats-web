@@ -141,5 +141,7 @@ with col2:
     model = keras.models.load_model('cnn2.h5')
     with open('encoder.pkl', 'rb') as f:
         encoder = pickle.load(f)
-        
-    result = run_prediction(audio_norm, model)
+    try:    
+        result = run_prediction(audio_norm, model)
+    except:
+        pass
