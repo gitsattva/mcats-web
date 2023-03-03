@@ -44,13 +44,6 @@ def file_to_mfcc(audio_norm, n_seg, i):
 
     return mfcc
 
-def extract_features(audio_norm):
-
-    # Tempo and beats
-    tempo, beats = librosa.beat.beat_track(y=audio_norm)
-    beats_mean = beats.mean()
-    return tempo, beats_mean
-
 def predict_song_cat(music_file, model):
     
     hop_length = 512 # num. of samples
@@ -103,7 +96,7 @@ def run_prediction(audio_norm, model):
     beats_mean = beats.mean()
     
     st.markdown(f"<h1 style='text-align: center; color: red;'> The tempo is {tempo}</h1>", unsafe_allow_html=True)
-    st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats_mean}</h1>", unsafe_allow_html=True)
 
     st.write(f"The genre of this song is ...")
     # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
