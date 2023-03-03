@@ -97,6 +97,13 @@ def run_prediction(audio_norm, model):
     pred = predictions_int.reshape(1,-1)
     pred = encoder.inverse_transform(predictions_int.reshape(1,-1))
     genre = pred[0][0]
+    
+    # Tempo and beats
+    tempo, beats = librosa.beat.beat_track(y=audio_norm)
+    beats_mean = beats.mean()
+    
+    st.markdown(f"<h1 style='text-align: center; color: red;'> The tempo is {tempo}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats}</h1>", unsafe_allow_html=True)
 
     st.write(f"The genre of this song is ...")
     # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
