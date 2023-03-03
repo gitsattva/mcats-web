@@ -95,8 +95,8 @@ def run_prediction(audio_norm, model):
     tempo, beats = librosa.beat.beat_track(y=audio_norm)
     beats_mean = beats.mean()
     
-    st.markdown(f"<h1 style='text-align: center; color: red;'> The tempo is {tempo}</h1>", unsafe_allow_html=True)
-    st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats_mean}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: red;'> The tempo is {tempo:.1f}</h1> beats per minute.", unsafe_allow_html=True)
+    # st.markdown(f"<h1 style='text-align: center; color: red;'>The beats are {beats_mean}</h1>", unsafe_allow_html=True)
 
     st.write(f"The genre of this song is ...")
     # st.markdown(f"<h1 style='text-align: center; color: red;'>{genre}</h1>", unsafe_allow_html=True)
