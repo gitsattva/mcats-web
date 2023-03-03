@@ -130,7 +130,7 @@ with col1:
         data_url = base64.b64encode(contents).decode('utf-8')
         file_.close()
         st.markdown(
-            f'<img src="data:image/gif;base64,{data_url}" text-align: center>',
+            f'<img src="data:image/gif;base64,{data_url}" style="display: flex; justify-content: center;">',
             unsafe_allow_html=True,
         )
 
