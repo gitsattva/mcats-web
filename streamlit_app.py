@@ -120,6 +120,8 @@ col1, col2 = st.columns([1, 1])
 
 with col1:
     music_file = st.file_uploader("Choose a music file")
+     with open(os.path.join("tempDir",music_file.name),"wb") as f:
+         f.write(music_file.getbuffer())
 
     if music_file is not None:
         # audio_norm = normalize_volume(music_file)
