@@ -146,7 +146,7 @@ with col1:
             bucket = client.bucket(bucket_name)
 
             # Destination path in the bucket
-            destination_blob_name = 'user_input'
+            destination_blob_name = 'goat.jpeg'
 
             # Upload the file to the bucket
             blob = bucket.blob(destination_blob_name)
