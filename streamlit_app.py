@@ -123,7 +123,7 @@ with col1:
     if music_file is not None:
         file_details = {"FileName":music_file.name,"FileType":music_file.type}
         st.write(file_details)
-        with open(os.path.join("tempDir",music_file.name),"wb") as f: 
+        with open(os.path.join(music_file.name),"wb") as f: 
             f.write(music_file.getbuffer())         
         st.success("Saved File")
 
