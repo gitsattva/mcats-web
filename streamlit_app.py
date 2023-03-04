@@ -9,6 +9,7 @@ import base64
 import IPython.display as ipd
 from google.cloud import storage
 from google.oauth2 import service_account
+from tempfile import NamedTemporaryFile
 
 
 
@@ -121,11 +122,10 @@ col1, col2 = st.columns([1, 1])
 with col1:
     music_file = st.file_uploader("Choose a music file")
     if music_file is not None:
-        file_details = {"FileName":music_file.name,"FileType":music_file.type}
-        st.write(file_details)
-        with open(os.path.join(music_file.name),"wb") as f: 
-            f.write(music_file.getbuffer())         
-        st.success("Saved File")
+        with NamedTemporaryFile(dir='.') as f:
+        f.write(music_file.getbuffer())
+        
+        
 
 #     if music_file is not None:
         # audio_norm = normalize_volume(music_file)
