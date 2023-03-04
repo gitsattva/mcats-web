@@ -8,6 +8,9 @@ import pickle
 import base64
 import IPython.display as ipd
 from google.cloud import storage
+import os
+
+CLOUD_PATH = os.environ.get("CLOUD_PATH")
 
 st.set_page_config(layout="wide")
 
@@ -117,13 +120,30 @@ with col1:
     music_file = st.file_uploader("Choose a music file")
 
     if music_file is not None:
-        audio_norm = normalize_volume(music_file)
-        audio_stft = librosa.stft(audio_norm)
-        audio_db = librosa.amplitude_to_db(abs(audio_stft))
-        plt.figure(figsize=(14, 5))
-        librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
-        plt.colorbar()
-        st.pyplot()
+        # audio_norm = normalize_volume(music_file)
+        # audio_stft = librosa.stft(audio_norm)
+        # audio_db = librosa.amplitude_to_db(abs(audio_stft))
+        # plt.figure(figsize=(14, 5))
+        # librosa.display.specshow(audio_db, sr=22050, x_axis='time', y_axis='hz')
+        # plt.colorbar()
+        # st.pyplot()
+
+        # Instantiates a client
+        client = storage.Client.from_service_account_json(CLOUD_PATH)
+
+        # Get the bucket to upload
+        bucket = client.get_bucket('mcats_bucket_1')
+
+        # File to upload
+        user_file = music_file
+
+        # Destination path in the bucket
+        destination_blob_name = './'
+
+        # Upload the file to the bucket
+        blob = bucket.blob(destination_blob_name)
+        blob.upload_from_filename(user_file)
+
 
     else:
         file_ = open('record.gif', 'rb')
