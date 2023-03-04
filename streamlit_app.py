@@ -137,7 +137,7 @@ with col1:
         client = storage.Client(credentials=credentials)
 
         @st.cache_data(ttl=600)
-        def read_file(bucket_name, file_path):
+        def send_file(bucket_name, file_path):
             bucket = client.bucket(bucket_name)
 
             # Destination path in the bucket
@@ -149,7 +149,7 @@ with col1:
 
             return  0
 
-        read_file('mcats_bucket_1', music_file)
+        send_file('mcats_bucket_1', music_file.name)
 
 
 
