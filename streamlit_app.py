@@ -126,7 +126,7 @@ with col1:
         img = load_image(music_file)
         st.image(img,height=250,width=250)
         with open(os.path.join("tempDir",music_file.name),"wb") as f: 
-        f.write(music_file.getbuffer())         
+            f.write(music_file.getbuffer())         
         st.success("Saved File")
 
     if music_file is not None:
