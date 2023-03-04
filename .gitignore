@@ -12,3 +12,5 @@ data/
 training_outputs/
 .wav
 .mp3
+.streamlit
+secrets.toml

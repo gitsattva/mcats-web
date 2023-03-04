@@ -8,9 +8,11 @@ import pickle
 import base64
 import IPython.display as ipd
 from google.cloud import storage
-import os
+from google.oauth2 import service_account
 
-CLOUD_PATH = os.environ.get("CLOUD_PATH")
+
+
+
 
 st.set_page_config(layout="wide")
 
@@ -128,21 +130,31 @@ with col1:
         # plt.colorbar()
         # st.pyplot()
 
-        # Instantiates a client
-        client = storage.Client.from_service_account_json(CLOUD_PATH)
+        # Create API client.
+        credentials = service_account.Credentials.from_service_account_info(
+            st.secrets["gcp_service_account"]
+        )
+        client = storage.Client(credentials=credentials)
 
-        # Get the bucket to upload
-        bucket = client.get_bucket('mcats_bucket_1')
+        @st.cache_data(ttl=600)
+        def read_file(bucket_name, file_path):
+            bucket = client.bucket(bucket_name)
 
-        # File to upload
-        user_file = music_file
+            # Destination path in the bucket
+            destination_blob_name = './'
 
-        # Destination path in the bucket
-        destination_blob_name = './'
+            # Upload the file to the bucket
+            blob = bucket.blob(destination_blob_name)
+            blob.upload_from_filename(file_path)
 
-        # Upload the file to the bucket
-        blob = bucket.blob(destination_blob_name)
-        blob.upload_from_filename(user_file)
+            return  0
+
+        read_file('mcats_bucket_1', music_file)
+
+
+
+
+
 
 
     else:

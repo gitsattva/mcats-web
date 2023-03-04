@@ -6,3 +6,4 @@ keras
 tensorflow
 ipython
 google-cloud-storage
+google-auth
