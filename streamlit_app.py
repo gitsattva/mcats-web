@@ -122,9 +122,9 @@ col1, col2 = st.columns([1, 1])
 with col1:
     music_file = st.file_uploader("Choose a music file")
 
-            
-            
-        
+
+
+
 
     if music_file is not None:
         # audio_norm = normalize_volume(music_file)
@@ -146,7 +146,7 @@ with col1:
             bucket = client.bucket(bucket_name)
 
             # Destination path in the bucket
-            destination_blob_name = 'goat.jpeg'
+            destination_blob_name = f'user_input/{music_file.name}'
 
             # Upload the file to the bucket
             blob = bucket.blob(destination_blob_name)
