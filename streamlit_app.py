@@ -155,14 +155,14 @@ with col1:
             unsafe_allow_html=True,
         )
 
-with col2:
-    #tempo, beats = extract_features(audio_norm, sr)
-    #st.markdown(f'The tempo of the song is: {tempo}, and the beats are {beats}')
+# with col2:
+    ##tempo, beats = extract_features(audio_norm, sr)
+    ##st.markdown(f'The tempo of the song is: {tempo}, and the beats are {beats}')
 
-    model = keras.models.load_model('cnn2.h5')
-    with open('encoder.pkl', 'rb') as f:
-        encoder = pickle.load(f)
-    try:
-        result = run_prediction(audio_norm, model)
-    except:
-        pass
+    # model = keras.models.load_model('cnn2.h5')
+    # with open('encoder.pkl', 'rb') as f:
+    #     encoder = pickle.load(f)
+    # try:
+    #     result = run_prediction(audio_norm, model)
+    # except:
+    #     pass
