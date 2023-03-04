@@ -124,7 +124,8 @@ with col1:
     if music_file is not None:
         with NamedTemporaryFile(dir='.') as f:
             f.write(music_file.getbuffer())
-        
+            st.markdown(f.name)
+            
         
 
 #     if music_file is not None:
