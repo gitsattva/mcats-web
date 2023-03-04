@@ -121,14 +121,12 @@ col1, col2 = st.columns([1, 1])
 
 with col1:
     music_file = st.file_uploader("Choose a music file")
-    if music_file is not None:
-        with NamedTemporaryFile(dir='.') as f:
-            f.write(music_file.getbuffer())
-            st.markdown(f.name)
+
+            
             
         
 
-#     if music_file is not None:
+    if music_file is not None:
         # audio_norm = normalize_volume(music_file)
         # audio_stft = librosa.stft(audio_norm)
         # audio_db = librosa.amplitude_to_db(abs(audio_stft))
@@ -138,25 +136,27 @@ with col1:
         # st.pyplot()
 
         # Create API client.
-#         credentials = service_account.Credentials.from_service_account_info(
-#             st.secrets["gcp_service_account"]
-#         )
-#         client = storage.Client(credentials=credentials)
+        credentials = service_account.Credentials.from_service_account_info(
+            st.secrets["gcp_service_account"]
+        )
+        client = storage.Client(credentials=credentials)
 
-#         @st.cache_data(ttl=600)
-#         def send_file(bucket_name, file_path):
-#             bucket = client.bucket(bucket_name)
+        @st.cache_data(ttl=600)
+        def send_file(bucket_name, file_path):
+            bucket = client.bucket(bucket_name)
 
-#             # Destination path in the bucket
-#             destination_blob_name = './'
+            # Destination path in the bucket
+            destination_blob_name = './'
 
-#             # Upload the file to the bucket
-#             blob = bucket.blob(destination_blob_name)
-#             blob.upload_from_filename(file_path)
+            # Upload the file to the bucket
+            blob = bucket.blob(destination_blob_name)
+            blob.upload_from_filename(file_path)
 
-#             return  0
+            return  0
 
-#         send_file('mcats_bucket_1', music_file.name)
+        with NamedTemporaryFile(dir='.') as f:
+            f.write(music_file.getbuffer())
+            send_file('mcats_bucket_1', f.name)
 
 
 
