@@ -5,5 +5,4 @@ matplotlib
 keras
 tensorflow
 ipython
-gcp
 google-cloud
