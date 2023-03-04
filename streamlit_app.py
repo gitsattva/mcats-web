@@ -113,7 +113,7 @@ st.markdown('Alexandre Bun, Ryan Massey, Sarah Deutchman, Steven Tin')
 #         unsafe_allow_html=True,
 #     )
 
-# col1, col2 = st.columns([1, 1])
+ col1, col2 = st.columns([1, 1])
 
 
 with col1:
