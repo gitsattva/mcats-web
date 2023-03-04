@@ -123,7 +123,7 @@ with col1:
     music_file = st.file_uploader("Choose a music file")
     if music_file is not None:
         with NamedTemporaryFile(dir='.') as f:
-        f.write(music_file.getbuffer())
+            f.write(music_file.getbuffer())
         
         
 
